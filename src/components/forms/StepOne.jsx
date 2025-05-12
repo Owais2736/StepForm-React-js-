@@ -7,12 +7,16 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
   };
 
   return (
+<>
+
+    <h1 className="text-center">Step No 1</h1>
     <form onSubmit={handleSubmit} className="w-50 mx-auto border rounded-2 p-4">
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
           Name
         </label>
         <input
+          required
           type="text"
           className="form-control"
           id="name"
@@ -26,6 +30,7 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
           Email
         </label>
         <input
+          required
           type="email"
           className="form-control"
           id="email"
@@ -38,6 +43,8 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
         Continue
       </button>
     </form>
+    
+</>
   );
 };
 

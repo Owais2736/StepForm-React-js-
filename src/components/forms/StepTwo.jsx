@@ -1,4 +1,4 @@
-import React , {useEffect} from "react";
+import React, { useEffect } from "react";
 
 const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
   const handleSubmit = (e) => {
@@ -9,17 +9,22 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
     nextStep();
   };
 
-    useEffect(() => {
-      document.title = "StepForm || Step 2";
-    }, []);
+  useEffect(() => {
+    document.title = "StepForm || Step 2";
+  }, []);
 
   return (
+<>
+
+    <h1 className="text-center">Step No 2</h1>
+
     <form onSubmit={handleSubmit} className="w-50 mx-auto border rounded-2 p-4">
       <div className="mb-3">
         <label htmlFor="password" className="form-label">
           Password
         </label>
         <input
+          required
           type="password"
           className="form-control"
           id="password"
@@ -33,6 +38,7 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
           Phone No
         </label>
         <input
+          required
           type="text"
           className="form-control"
           id="phone"
@@ -50,6 +56,8 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
         </button>
       </div>
     </form>
+</>
+
   );
 };
 
