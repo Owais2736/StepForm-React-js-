@@ -39,7 +39,7 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
         </label>
         <input
           required
-          type="text"
+          type="phone"
           className="form-control"
           id="phone"
           name="phone"
