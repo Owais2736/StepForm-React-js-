@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import StepOne from "./components/forms/StepOne";
 import StepTwo from "./components/forms/StepTwo";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [step, setStep] = useState(1);
@@ -33,6 +35,7 @@ const App = () => {
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={3000} />
       <h1 className="text-center">MultiStep Form</h1>
       {step === 1 && (
         <StepOne

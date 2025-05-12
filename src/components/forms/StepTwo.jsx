@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log("Form Data:", values);
+     toast.success("Form submitted successfully!");
 
-    nextStep();
   };
 
   useEffect(() => {
