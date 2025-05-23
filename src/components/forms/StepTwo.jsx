@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { icon } from "@fortawesome/fontawesome-svg-core";
 
 const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
+  const [tooglePassword, setTooglePassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,10 +35,11 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
         onSubmit={handleSubmit(onsubmit)}
         className="w-50 mx-auto border rounded-2 p-4"
       >
-        <div className="mb-3">
+        <div className="mb-3 position-relative">
           <label htmlFor="password" className="form-label">
             Password
           </label>
+
           <input
             {...register("password", {
               required: { value: true, message: "This is required Field" },
@@ -42,12 +47,21 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
               minLength: { value: 5, message: "Min length is 5" },
               maxLength: { value: 20, message: "Max length is 20" },
             })}
-            type="password"
-            className="form-control"
+            type={tooglePassword ? "text" : "password"}
+            className="form-control pe-5"
             id="password"
             name="password"
             value={values.password}
             onChange={handleFormInput}
+          />
+
+          <FontAwesomeIcon
+            icon={tooglePassword ? faEye : faEyeSlash}
+            className="position-absolute top-50 end-0 translate-middle-y me-3 text-muted"
+            onClick={() => {
+              setTooglePassword((toggle) => !toggle);
+            }}
+            style={{ cursor: "pointer" }}
           />
 
           <br />
@@ -55,6 +69,7 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
             <span className="text-danger">{errors?.password?.message}</span>
           )}
         </div>
+
         <div className="mb-3">
           <label htmlFor="phone" className="form-label">
             Phone No
