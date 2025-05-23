@@ -7,6 +7,7 @@ import { icon } from "@fortawesome/fontawesome-svg-core";
 
 const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
   const [tooglePassword, setTooglePassword] = useState(false);
+  const [toogleconfirmPassword, setToogleconfirmPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -25,6 +26,11 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
 
   function isStrongPassword(value) {
     return /[A-Z]/.test(value) || "Must contain at least one uppercase letter";
+  }
+
+  function confirmPassword() {
+    const data = values.password == values.confirmPassword;
+    return data || "password and confirm password must be same";
   }
 
   return (
@@ -67,6 +73,41 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
           <br />
           {errors?.password && (
             <span className="text-danger">{errors?.password?.message}</span>
+          )}
+        </div>
+
+        <div className="mb-3 position-relative">
+          <label htmlFor="password" className="form-label">
+            Confirm Password
+          </label>
+
+          <input
+            {...register("confirmPassword", {
+              required: { value: true, message: "This is required Field" },
+              validate: confirmPassword,
+            })}
+            type={toogleconfirmPassword ? "text" : "password"}
+            className="form-control pe-5"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={values.confirmPassword}
+            onChange={handleFormInput}
+          />
+
+          <FontAwesomeIcon
+            icon={toogleconfirmPassword ? faEye : faEyeSlash}
+            className="position-absolute top-50 end-0 translate-middle-y me-3 text-muted"
+            onClick={() => {
+              setToogleconfirmPassword((toggle) => !toggle);
+            }}
+            style={{ cursor: "pointer" }}
+          />
+
+          <br />
+          {errors?.confirmPassword && (
+            <span className="text-danger">
+              {errors?.confirmPassword?.message}
+            </span>
           )}
         </div>
 
