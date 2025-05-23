@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 const StepOne = ({ nextStep, handleFormInput, values }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = () => {
     nextStep();
   };
 
@@ -10,7 +16,7 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
     <>
       <h1 className="text-center">Step No 1</h1>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="w-50 mx-auto border rounded-2 p-4"
       >
         <div className="mb-3">
@@ -18,21 +24,29 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
             Name
           </label>
           <input
-            required
+            {...register("name", {
+              required: { value: true, message: "This is Required Field" },
+              minLength: { value: 3, message: "Min Length is 3" },
+              maxLength: { value: 20, message: "Max Length is 20" },
+            })}
             type="text"
             className="form-control"
-            id="name"
-            name="name"
             value={values.name}
             onChange={handleFormInput}
           />
+          {errors?.name && (
+            <span className="text-danger">{errors?.name?.message}</span>
+          )}
         </div>
+
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
-            required
+            {...register("email", {
+              required: { value: "true", message: "This is required Field" },
+            })}
             type="email"
             className="form-control"
             id="email"
@@ -40,7 +54,12 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
             value={values.email}
             onChange={handleFormInput}
           />
+          <br />
+          {errors?.email && (
+            <span className="text-danger">{errors?.email?.message}</span>
+          )}
         </div>
+
         <button type="submit" className="btn btn-primary">
           Continue
         </button>
@@ -48,5 +67,4 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
     </>
   );
 };
-
 export default StepOne;
