@@ -35,7 +35,7 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={2000} />
       <h1 className="text-center">MultiStep Form</h1>
       {step === 1 && (
         <StepOne
