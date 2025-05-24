@@ -34,6 +34,11 @@ const App = () => {
     }));
   };
 
+  const handleAnotherResponse = () => {
+    setFormData("");
+    return setStep(1);
+  };
+
   return (
     <>
       <ToastContainer position="top-right" autoClose={2000} />
@@ -54,7 +59,16 @@ const App = () => {
         />
       )}
       {step > 2 && (
-        <div className="text-center">Form submission Successfully ...!</div>
+        <>
+          <div className="text-center">Form submission Successfully ...!</div>
+          <div
+            onClick={handleAnotherResponse}
+            style={{ cursor: "pointer" }}
+            className="text-center text-primary text-decoration-underline"
+          >
+            Try another response...
+          </div>
+        </>
       )}
     </>
   );
