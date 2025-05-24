@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
+const StepTwo = ({ prevStep, nextStep,  handleFormInput, values }) => {
   const [tooglePassword, setTooglePassword] = useState(false);
   const [toogleconfirmPassword, setToogleconfirmPassword] = useState(false);
   const {
@@ -13,14 +13,20 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
 
     formState: { errors },
   } = useForm();
-
+  
   const onsubmit = (e) => {
     console.log("Form Data:", values);
+ const existingData = JSON.parse(localStorage.getItem("Form Data")) || [];
+  existingData.push(values);
+  localStorage.setItem("Form Data", JSON.stringify(existingData));
     toast.success("Form submitted successfully!");
+    nextStep()
   };
+
 
   useEffect(() => {
     document.title = "StepForm || Step 2";
+  
   }, []);
 
   function isStrongPassword(value) {

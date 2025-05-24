@@ -13,6 +13,7 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
 
   return (
     <>
+    
       <h1 className="text-center">Step No 1</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
