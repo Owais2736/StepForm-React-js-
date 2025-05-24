@@ -31,7 +31,7 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
             })}
             type="text"
             className="form-control"
-            value={values.name}
+            value={values?.name}
             onChange={handleFormInput}
           />
           {errors?.name && (
@@ -51,7 +51,7 @@ const StepOne = ({ nextStep, handleFormInput, values }) => {
             className="form-control"
             id="email"
             name="email"
-            value={values.email}
+            value={values?.email}
             onChange={handleFormInput}
           />
           <br />

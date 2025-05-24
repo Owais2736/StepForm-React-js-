@@ -29,7 +29,7 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
   }
 
   function confirmPassword() {
-    const data = values.password == values.confirmPassword;
+    const data = values?.password == values?.confirmPassword;
     return data || "password and confirm password must be same";
   }
 
@@ -57,7 +57,7 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
             className="form-control pe-5"
             id="password"
             name="password"
-            value={values.password}
+            value={values?.password}
             onChange={handleFormInput}
           />
 
@@ -90,7 +90,7 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
             className="form-control pe-5"
             id="confirmPassword"
             name="confirmPassword"
-            value={values.confirmPassword}
+            value={values?.confirmPassword}
             onChange={handleFormInput}
           />
 
@@ -123,7 +123,7 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
             className="form-control"
             id="phone"
             name="phone"
-            value={values.phone}
+            value={values?.phone}
             onChange={handleFormInput}
           />
           <br />

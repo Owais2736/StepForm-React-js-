@@ -10,7 +10,7 @@ const App = () => {
     name: "",
     email: "",
     password: "",
-    confirmPassword :" ",
+    confirmPassword: " ",
     phone: "",
   });
 
