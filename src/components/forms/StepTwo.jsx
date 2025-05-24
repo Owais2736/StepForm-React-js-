@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { icon } from "@fortawesome/fontawesome-svg-core";
 
 const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
   const [tooglePassword, setTooglePassword] = useState(false);
@@ -29,7 +28,7 @@ const StepTwo = ({ prevStep, nextStep, handleFormInput, values }) => {
   }
 
   function confirmPassword() {
-    const data = values?.password == values?.confirmPassword;
+    const data = values?.password === values?.confirmPassword;
     return data || "password and confirm password must be same";
   }
 
